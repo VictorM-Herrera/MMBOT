@@ -31,7 +31,8 @@ module.exports = {
         const target = message.mentions.users.first() || message.author;
         const member = await message.guild.members.fetch(target.id);
         message.reply(`Bienvenido a MMBOT **${member.user.displayName}**, por favor seleccione una clase:`);
-
+        console.log('test');
+        
         
     }
 }
