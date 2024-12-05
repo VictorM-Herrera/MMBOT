@@ -2,7 +2,6 @@ const { Sequelize } = require("sequelize");
 
 require("dotenv").config();
 const password = process.env.BDD;
-console.log(password);
 
 const port = process.env.PORT;
 

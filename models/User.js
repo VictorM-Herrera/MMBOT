@@ -7,6 +7,10 @@ const User = sequelize.define('User',{
         allowNull: false,
         unique: true,
     },
+    hasJoined: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+    },
     level:{
         type: DataTypes.INTEGER,
         defaultValue:1,
@@ -21,7 +25,11 @@ const User = sequelize.define('User',{
     },
     class:{
         type: DataTypes.STRING(50),
-        allowNull:false,
+        allowNull: false,
+    },
+    max_health: {
+        type: DataTypes.INTEGER,
+        defaultValue: 100,
     },
     true_damage:{
         type:DataTypes.INTEGER,
