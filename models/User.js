@@ -67,14 +67,6 @@ const User = sequelize.define('User',{
         type: DataTypes.DECIMAL(5, 2),
         defaultValue: 1.0, // Ataques por segundo
     },
-    fisical_pen: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-    },
-    magic_pen: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-    },
 },{ timestamps: false,});
 
 module.exports = User;
