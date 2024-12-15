@@ -5,7 +5,7 @@ const User = sequelize.define('User',{
     discord_id:{
         type: DataTypes.STRING(50),
         allowNull: false,
-        unique: true,
+        primaryKey: true,
     },
     hasJoined: {
         type: DataTypes.BOOLEAN,

@@ -38,7 +38,7 @@ module.exports = {
   run: async (message) => {
     const target = message.mentions.users.first() || message.author;
     const member = await message.guild.members.fetch(target.id);
-
+    let interactionWithButton = false;
     const user = await User.findOne({
       where: { discord_id: `${member.user.id}` },
     });
@@ -73,6 +73,7 @@ module.exports = {
       });
       collector.on("collect", async (interaction) => {
         let newUser;
+        interactionWithButton = true;
         switch (interaction.customId) {
           case "paladin":
             interaction.update({
@@ -133,12 +134,14 @@ module.exports = {
         }
       });
       collector.on("end", async () => {
-        reply
+        if (!interactionWithButton) {
+          reply
           .edit({
             content: "Mensaje expirado",
             components: [],
           })
           .catch(console.error);
+        }
       });
     }
   },
