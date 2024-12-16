@@ -73,16 +73,12 @@ module.exports = {
       });
       collector.on("collect", async (interaction) => {
         if (interaction.customId == "claim") {
+          if(interactionWithButton) return;
           interactionWithButton = true;
           const interactionUser = User.findOne({
             where: { discord_id: interaction.user.id },
           });
           if (interactionUser) {
-            const updatedEmbed = new EmbedBuilder(weaponEmbed)
-            .setFooter({
-              text: `Pertenece a ${interaction.user.username}`,
-              iconURL: interaction.user.displayAvatarURL(),
-            });
             const newWeapon = Weapon.create({
               name: weaponName,
               true_damage: weapon.true_damage,
@@ -96,16 +92,22 @@ module.exports = {
               price:weapon.price,
               level: weapon.level,
               rarity: rarity,
-              UserId: user.dataValues.discord_id
+              userId: user.dataValues.discord_id
             });
-
+            const updatedEmbed = new EmbedBuilder(weaponEmbed)
+            .setFooter({
+              text: `Pertenece a ${interaction.user.username}`,
+              iconURL: interaction.user.displayAvatarURL(),
+            });
             await interaction.update({
               embeds: [updatedEmbed],
               components: [],
             });
           }
         }else if(interaction.customId == "getGold"){
+          if (interactionWithButton) return;
           interactionWithButton = true;
+
           const interactionUser = await User.findOne({
             where: { discord_id: interaction.user.id },
           });
@@ -121,6 +123,7 @@ module.exports = {
             }
           }
         }
+        collector.stop();
       });
 
       collector.on("end", async () => {
