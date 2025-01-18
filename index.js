@@ -4,7 +4,16 @@ const sequelize = require('./db');
 const User = require('./models/User');
 const Weapon = require('./models/Weapon');
 const Armor = require('./models/Armor');
-
+//Conexiones:
+User.hasMany(Weapon, {
+    foreignKey: 'userId',
+    sourceKey: 'discord_id',
+});
+Weapon.belongsTo(User,{
+    foreignKey: 'userId',
+    sourceKey: 'discord_id',
+});
+//
 require("dotenv").config();
 const token = process.env.TOKEN;
 

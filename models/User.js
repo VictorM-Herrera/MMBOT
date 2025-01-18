@@ -5,7 +5,11 @@ const User = sequelize.define('User',{
     discord_id:{
         type: DataTypes.STRING(50),
         allowNull: false,
-        unique: true,
+        primaryKey: true,
+    },
+    hasJoined: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
     },
     level:{
         type: DataTypes.INTEGER,
@@ -21,7 +25,11 @@ const User = sequelize.define('User',{
     },
     class:{
         type: DataTypes.STRING(50),
-        allowNull:false,
+        allowNull: false,
+    },
+    max_health: {
+        type: DataTypes.INTEGER,
+        defaultValue: 100,
     },
     true_damage:{
         type:DataTypes.INTEGER,
@@ -58,14 +66,6 @@ const User = sequelize.define('User',{
     atack_speed: {
         type: DataTypes.DECIMAL(5, 2),
         defaultValue: 1.0, // Ataques por segundo
-    },
-    fisical_pen: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-    },
-    magic_pen: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
     },
 },{ timestamps: false,});
 
