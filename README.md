@@ -99,7 +99,3 @@ Si deseas contribuir al desarrollo del bot:
 
 ---
 
-## Licencia
-
-Este proyecto está licenciado bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
-
